@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swpu.uchain.community.dao.GroupMapper" >
+  <resultMap id="BaseResultMap" type="com.swpu.uchain.community.entity.Group" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `group`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.swpu.uchain.community.entity.Group" >
+    insert into `group` (id, group_name)
+    values (#{id,jdbcType=INTEGER}, #{groupName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.swpu.uchain.community.entity.Group" >
+    update `group`
+    set group_name = #{groupName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id,group_name
+    from `group`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, group_name
+    from `group`
+  </select>
+    <select id="getByGroupName" parameterType="String" resultType="com.swpu.uchain.community.entity.Group">
+        select id, group_name
+    from `group`
+    where group_name = #{groupName,jdbcType=VARCHAR}
+    </select>
+</mapper>
